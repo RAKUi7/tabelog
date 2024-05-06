@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>会員詳細</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+
+	<main class="show-main">
+		<ol class="tabs">
+			<li class="tab-item"><a th:href="@{/admin/users}">会員一覧</a></li>
+			<li class="tab-item" aria-current="page">会員詳細</li>
+		</ol>
+
+		<h1 th:text="${user.getName()}"></h1>
+
+		<div class="info-block">
+			<span class="label">ID：</span>
+			<span class="value" th:text="${user.getId()}">ID</span>
+		</div>
+
+		<div class="info-block">
+			<span class="label">氏名：</span>
+			<span class="value" th:text="${user.getName()}">氏名</span>
+		</div>
+
+		<div class="info-block">
+			<span class="label">メールアドレス：</span>
+			<span class="value" th:text="${user.getEmail()}">メールアドレス</span>
+		</div>
+
+		<div class="info-block">
+			<span class="label">郵便番号：</span>
+			<span class="value" th:text="${user.getPostalCode()}">郵便番号</span>
+		</div>
+
+		<div class="info-block">
+			<span class="label">住所：</span>
+			<span class="value" th:text="${user.getPostalCode()}">住所</span>
+		</div>
+
+		<div class="info-block">
+			<span class="label">電話番号：</span>
+			<span class="value" th:text="${user.getPhoneNumber()}">電話番号</span>
+		</div>
+
+	</main>
+
+	<div th:replace="~{fragment :: footer}"></div>
+</body>
+
+</html>

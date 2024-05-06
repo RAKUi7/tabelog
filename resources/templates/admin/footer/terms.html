@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>利用規約</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+	<section class="privacy-section">
+        <h2 class="section-title">利用登録</h2>
+        <p class="section-content">ユーザーは、本規約に同意の上、利用登録をすることができます。登録手続きは当サイトの定める方法により行ってください。</p>
+    </section>
+    <section class="privacy-section">
+        <h2 class="section-title">禁止事項</h2>
+        <p class="section-content">以下の行為は禁止しています：
+            <ul class="privacy-list">
+                <li class="list-item">法令または公序良俗に違反する行為</li>
+                <li class="list-item">犯罪行為に関連する行為</li>
+                <li class="list-item">当サイト、他のユーザー、または第三者の権利を侵害する行為</li>
+                <li class="list-item">その他、当サイトが不適切と判断する行為</li>
+            </ul>
+        </p>
+    </section>
+    <section class="privacy-section">
+        <h2 class="section-title">本サービスの提供の停止等</h2>
+        <p class="section-content">当サイトは、以下のいずれかに該当する場合、ユーザーに事前の通知なく本サービスの全部または一部の提供を停止または中断することができます。
+            <ul class="privacy-list">
+                <li class="list-item">本サービス用の設備の保守点検または更新を行う場合</li>
+                <li class="list-item">地震、落雷、火災、停電または天災などの不可抗力により、サービス提供が困難となった場合</li>
+                <li class="list-item">その他、当サイトがサービス提供が困難と判断した場合</li>
+            </ul>
+        </p>
+    </section>
+    <section class="privacy-section">
+        <h2 class="section-title">免責事項</h2>
+        <p class="section-content">当サイトは、ユーザーが本サービスの提供によって得た利益や損害に関して、一切の責任を負いません。</p>
+    </section>
+    <div th:replace="~{fragment :: footer}"></div>
+</body>
+
+</html>

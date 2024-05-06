@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:fragment="meta" th:remove="tag">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</div>
+
+	<div th:fragment="styles" th:remove="tag">
+		<!-- Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+		<link th:href="@{/css/style.css}" rel="stylesheet">
+	</div>
+	<title>部品化用のHTML</title>
+</head>
+
+<body>
+	<div th:fragment="header" th:remove="tag">
+		<header class="site-header">
+			<!--未ログイン-->
+			<h1 class="site-title"><a th:href="@{/}" class="site-title-link">NAGOYAMESHI</a></h1>
+			<nav class="site-nav">
+				<ul class="nav-list">
+					<li class="nav-item" sec:authorize="isAnonymous()">
+						<a th:href="@{/login}" class="nav-link">ログイン</a>
+					</li>
+					<li class="nav-item" sec:authorize="isAnonymous()">
+						<a th:href="@{/signup}" class="nav-link">会員登録</a>
+					</li>
+
+					<!--一般会員-->
+					<li class="nav-item user-info" sec:authorize="isAuthenticated()">
+						<h3 class="user-name"><span sec:authentication="principal.user.name"></span></span></h3>
+						<ul class="user-menu">
+							<li><a th:href="@{/}" class="user-link">ホーム</a></li>
+							<li><a th:href="@{/user}" class="user-link">会員情報</a></li>
+							<li sec:authorize="hasRole('ROLE_PREMIUM')"><a th:href="@{/reservations}"
+									class="user-link">予約一覧</a></li>
+							<li><a th:href="@{/logout}"
+									onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+									class="user-link logout">ログアウト</a></li>
+						</ul>
+						<form id="logout-form" th:action="@{/logout}" method="post"></form>
+					</li>
+
+					<!--管理者-->
+					<li class="nav-item admin-menu" sec:authorize="hasRole('ROLE_ADMIN')">
+						<h2 class="admin-title">管理者メニュー</h2>
+						<ul class="admin-actions">
+							<li><a th:href="@{/admin/restaurants}" class="user-link">レストラン一覧</a></li>
+							<li><a th:href="@{/admin/users}" class="user-link">会員一覧</a></li>
+							<li><a th:href="@{/admin/categories}" class="user-link">カテゴリ一覧</a></li>
+						</ul>
+						<form id="logout-form" th:action="@{/logout}" method="post"></form>
+					</li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+
+	<div th:fragment="footer" th:remove="tag">
+		<footer class="site-footer">
+			<ul class="footer-links">
+				<li><a th:href="@{/terms}">利用規約</a></li>
+				<li><a th:href="@{/privacy}">プライバシーポリシー</a></li>
+				<li><a th:href="@{/contact}">会社情報</a></li>
+			</ul>
+			<p>&copy; NAGOYAMESHI</p>
+		</footer>
+	</div>
+
+
+</body>
+
+</html>

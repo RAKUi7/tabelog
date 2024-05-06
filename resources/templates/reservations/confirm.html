@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html　xmlns:th="https: //www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>予約内容確認</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+	<main>
+		<ol>
+			<li><a th:href="@{/}">ホーム</a></li>
+			<li><a th:href="@{/restaurants}">レストラン一覧</a></li>
+			<li><a th:href="@{/restaurants/__${restaurant.getId()}__}">レストラン詳細</a></li>
+			<li aria-current="page">予約内容確認</li>
+		</ol>
+
+		<h1>予約内容確認</h1>
+
+		<form method="post" th:action="@{/restaurants/__${restaurant.getId()}__/reservations/create}"
+			th:object="${reservationRegisterForm}">
+			<input type="hidden" th:field="*{restaurantId}">
+			<input type="hidden" th:field="*{userId}">
+			<input type="hidden" th:field="*{reservedDatetime}">
+			<input type="hidden" th:field="*{numberOfPeople}">
+
+			<div>
+				<label for="reservedDatetime">予約日:</label>
+				<input type="date" id="reservedDatetime" th:field="*{reservedDatetime}">
+			</div>
+
+			<div>
+				<div>
+					<span>人数</span>
+				</div>
+				<div>
+					<span th:text="*{numberOfPeople + '名'}"></span>
+				</div>
+			</div>
+
+			<div>
+				<button type="submit">確定する</button>
+			</div>
+		</form>
+	</main>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>会員登録</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+	<main class="show-main">
+		<h1>会員登録</h1>
+		<form method="post" th:action="@{/signup}" th:object="${signupForm}" class="edit-form">
+			<div class="form-group">
+				<label for="name">氏名 【必須】</label>
+				<div th:if="${#fields.hasErrors('name')}" class="error-message" th:errors="*{name}"></div>
+				<input type="text" id="name" th:field="*{name}" class="form-control" placeholder="侍 太郎">
+			</div>
+
+			<div class="form-group">
+				<label for="email">メールアドレス 【必須】</label>
+				<div th:if="${#fields.hasErrors('email')}" class="error-message" th:errors="*{email}"></div>
+				<input type="text" id="email" th:field="*{email}" class="form-control" placeholder="メールアドレス">
+			</div>
+
+			<div class="form-group">
+				<label for="password">パスワード 【必須】</label>
+				<div th:if="${#fields.hasErrors('password')}" class="error-message" th:errors="*{password}"></div>
+				<input type="password" id="password" th:field="*{password}" class="form-control"
+					autocomplete="new-password">
+			</div>
+
+			<div class="form-group">
+				<label for="passwordConfirmation">パスワード（確認用）【必須】</label>
+				<div th:if="${#fields.hasErrors('passwordConfirmation')}" class="error-message"
+					th:errors="*{passwordConfirmation}"></div>
+				<input type="password" id="passwordConfirmation" th:field="*{passwordConfirmation}" class="form-control"
+					autocomplete="new-password">
+			</div>
+
+			<div class="form-group">
+				<label for="postalCode">郵便番号 【必須】</label>
+				<div th:if="${#fields.hasErrors('postalCode')}" class="error-message" th:errors="*{postalCode}"></div>
+				<input type="text" id="postalCode" th:field="*{postalCode}" class="form-control"
+					autocomplete="postal-code">
+			</div>
+
+			<div class="form-group">
+				<label for="address">住所 【必須】</label>
+				<div th:if="${#fields.hasErrors('address')}" class="error-message" th:errors="*{address}"></div>
+				<input type="text" id="address" th:field="*{address}" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="phoneNumber">電話番号 【必須】</label>
+				<div th:if="${#fields.hasErrors('phoneNumber')}" class="error-message" th:errors="*{phoneNumber}"></div>
+				<input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control"
+					autocomplete="tel-national">
+			</div>
+
+			<button type="submit" class="btn btn-submit">登録</button>
+		</form>
+	</main>
+	<div th:replace="~{fragment :: footer}"></div>
+</body>
+
+</html>

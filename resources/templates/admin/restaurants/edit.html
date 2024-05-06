@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>レストラン詳細編集</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+
+	<main class="edit-form-container">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/admin/restaurants}">レストラン一覧</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/admin/restaurants/__${restaurantEditForm.getId()}__}">レストラン詳細</a>
+			</li>
+			<li class="breadcrumb-item">レストラン情報編集</li>
+
+			<form method="post" th:action="@{/admin/restaurants/__${restaurantEditForm.getId()}__/update}"
+				th:object="${restaurantEditForm}" enctype="multipart/form-data" class="edit-form">
+				<input type="hidden" th:field="*{id}">
+
+				<label for="name">レストラン名</label>
+				<div class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+				<input type="text" th:field="*{name}" class="form-control">
+
+				<label for="imageFile">レストラン画像</label>
+				<div class="error-message" th:if="${#fields.hasErrors('imageFile')}" th:errors="*{imageFile}">
+				</div>
+				<input type="file" th:field="*{imageFile}" class="form-control">
+
+				<label for="description">レストラン説明</label>
+				<div class="error-message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+				<textarea th:field="*{description}" cols="30" rows="5" class="form-control"></textarea>
+
+				<label for="lowestPrice">最低価格</label>
+				<div class="error-message" th:if="${#fields.hasErrors('lowestPrice')}" th:errors="*{lowestPrice}"></div>
+				<input type="number" th:field="*{lowestPrice}" class="form-control">
+
+				<label for="highestPrice">最高価格</label>
+				<div class="error-message" th:if="${#fields.hasErrors('highestPrice')}" th:errors="*{highestPrice}">
+				</div>
+				<input type="number" th:field="*{highestPrice}" class="form-control">
+
+				<label for="postalCode">郵便番号</label>
+				<div class="error-message" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></div>
+				<input type="text" th:field="*{postalCode}" class="form-control">
+
+				<label for="address">住所</label>
+				<div class="error-message" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">
+				</div>
+				<input type="text" th:field="*{address}" class="form-control">
+
+				<label for="phoneNumber">電話番号</label>
+				<div class="error-message" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+				<input type="text" th:field="*{phoneNumber}" class="form-control">
+
+				<label for="openingTime">開店時間</label>
+				<div class="error-message" th:if="${#fields.hasErrors('openingTime')}" th:errors="*{openingTime}"></div>
+				<input type="text" th:field="*{openingTime}" class="form-control">
+
+				<label for="closingTime">閉店時間</label>
+				<div class="error-message" th:if="${#fields.hasErrors('closingTime')}" th:errors="*{closingTime}"></div>
+				<input type="text" th:field="*{closingTime}" class="form-control">
+
+				<button type="submit" class="btn btn-submit">更新</button>
+
+			</form>
+
+		</ol>
+
+	</main>
+
+	<div th:replace="~{fragment :: footer}"></div>
+</body>
+
+</html>

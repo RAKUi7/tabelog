@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>会員情報</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+
+	<main class="user-info-main">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/restaurants}">レストラン一覧</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/user/edit}">編集</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/user/changepass}">パスワードの変更</a></li>
+		</ol>
+
+		<div th:if="${successMessage}" class="success-message">
+			<span th:text="${successMessage}"></span>
+		</div>
+
+		<h2>会員情報</h2>
+
+		<div th:if="${user.hasRole('ROLE_FREE')}" class="user-info-upgrade">
+			<form th:action="@{/user/upgrade}" method="post">
+				<input type="hidden" name="userId" th:value="${user.getId()}" />
+				<button type="submit" id="checkout-button" class="user-info-button-upgrade">有料会員にアップグレード</button>
+			</form>
+		</div>
+
+		<div th:if="${user.hasRole('ROLE_PREMIUM')}" class="user-info-downgrade">
+			<form th:action="@{/user/downgrade}" method="post">
+				<input type="hidden" name="userId" th:value="${user.getId()}" />
+				<button type="submit" id="downgrade-button" class="user-info-button-downgrade">無料会員にダウングレード</button>
+			</form>
+		</div>
+
+		<div>
+			<div class="info-block">
+				<span class="label">氏名:</span>
+				<span class="value" th:text="${user.getName()}"></span>
+			</div>
+
+			<div class="info-block">
+				<span class="label">メールアドレス:</span>
+				<span class="value" th:text="${user.getEmail()}"></span>
+			</div>
+
+			<div class="info-block">
+				<span class="label">郵便番号:</span>
+				<span class="value" th:text="${user.getPostalCode()}"></span>
+			</div>
+
+			<div class="info-block">
+				<span class="label">住所:</span>
+				<span class="value" th:text="${user.getAddress()}"></span>
+			</div>
+
+			<div class="info-block">
+				<span class="label">電話番号:</span>
+				<span class="value" th:text="${user.getPhoneNumber()}"></span>
+			</div>
+
+			<div class="info-block">
+				<span class="label">会員資格: </span>
+				<span class="value" th:if="${user.hasRole('ROLE_PREMIUM')}">有料会員</span>
+				<span class="value" th:if="${user.hasRole('ROLE_FREE')}">無料会員</span>
+				<span class="value" th:if="${user.hasRole('ROLE_ADMIN')}">管理者</span>
+			</div>
+		</div>
+	</main>
+	<div th:replace="~{fragment :: footer}"></div>
+</body>
+
+</html>

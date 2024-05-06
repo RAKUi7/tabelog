@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>会社情報</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+	<section class="privacy-section">
+		<h2 class="section-title">会社概要</h2>
+		<p class="section-content">株式会社RAKU</p>
+		<p class="section-content">所在地: 静岡県</p>
+		<p class="section-content">設立: 1998年12月</p>
+		<p class="section-content">代表者: 山田太郎</p>
+		<p class="section-content">事業内容: 食べログサイトを運営</p>
+	</section>
+	<section class="privacy-section">
+		<h2 class="section-title">連絡先</h2>
+		<p class="section-content">電話番号: 0120-234-567</p>
+		<p class="section-content">メールアドレス: rakuraku@example.com</p>
+	</section>
+	<div th:replace="~{fragment :: footer}"></div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>予約一覧</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+	<main class="show-main">
+		<ol>
+			<li><a th:href="@{/}">ホーム</a></li>
+			<li aria-current="page">予約一覧</li>
+		</ol>
+		<h1>予約一覧</h1>
+		<div th:if="${param.reserved}">予約が完了しました。</div>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">レストラン名</th>
+					<th scope="col">予約日</th>
+					<th scope="col">人数</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="reservation : ${reservationPage}">
+					<td>
+						<a th:href="@{/restaurants/__${reservation.getRestaurant().getId()}__}"
+							th:text="${reservation.getRestaurant().getName()}"></a>
+					</td>
+					<td th:text="${reservation.getReservedDatetime()}"></td>
+					<td th:text="${reservation.getNumberOfPeople + '名'}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div th:if="${reservationPage.getTotalPages() > 1}">
+			<nav aria-label="予約一覧ページ">
+				<ul>
+					<li>
+						<span th:if="${reservationPage.isFirst()}">前</span>
+						<a th:unless="${reservationPage.isFirst()}"
+							th:href="@{/reservations(page = ${reservationPage.getNumber() - 1})}">前</a>
+					</li>
+					<li th:each="i : ${#numbers.sequence(0, reservationPage.getTotalPages() - 1)}">
+						<span th:if="${i == reservationPage.getNumber()}" th:text="${i + 1}"></span>
+						<a th:unless="${i == reservationPage.getNumber()}" th:href="@{/reservations(page = ${i})}"
+							th:text="${i + 1}"></a>
+					</li>
+					<li>
+						<span th:if="${reservationPage.isLast()}">次</span>
+						<a th:unless="${reservationPage.isLast()}"
+							th:href="@{/reservations(page = ${reservationPage.getNumber() + 1})}">次</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</main>
+
+	<div th:replace="~{fragment :: footer}"></div>
+
+</body>
+
+</html>

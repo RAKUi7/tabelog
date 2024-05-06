@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>会員情報</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+	<main class="user-info-main">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/user}">会員情報</a></li>
+			<li class="breadcrumb-item" aria-current="page">会員情報編集</li>
+			<li class="breadcrumb-item"><a th:href="@{/delete}">退会</a></li>
+		</ol>
+
+		<form method="post" th:action="@{/user/update}" th:object="${userEditForm}" class="edit-form">
+			<input type="hidden" th:field="*{id}">
+
+			<label for="name">氏名 【必須】</label>
+			<div th:if="${#fields.hasErrors('name')}" class="error-message" th:errors="*{name}"></div>
+			<input type="text" id="name" th:field="*{name}" class="form-control" placeholder="侍 太郎">
+
+			<label for="email">メールアドレス 【必須】</label>
+			<div th:if="${#fields.hasErrors('email')}" class="error-message" th:errors="*{email}"></div>
+			<input type="text" id="email" th:field="*{email}" class="form-control" autocomplete="email"
+				placeholder="taro.samurai@example.com">
+
+			<label for="email">郵便番号 【必須】</label>
+			<div th:if="${#fields.hasErrors('postalCode')}" class="error-message" th:errors="*{postalCode}"></div>
+			<input type="text" id="postalCode" th:field="*{postalCode}" class="form-control" autocomplete="postalCode">
+
+			<label for="email">住所 【必須】</label>
+			<div th:if="${#fields.hasErrors('address')}" class="error-message" th:errors="*{address}"></div>
+			<input type="text" id="address" th:field="*{address}" class="form-control" autocomplete="address">
+
+			<label for="phoneNumber">電話番号 【必須】</label>
+			<div th:if="${#fields.hasErrors('phoneNumber')}" class="error-message" th:errors="*{phoneNumber}"></div>
+			<input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control"
+				autocomplete="tel-national">
+
+			<button type="submit" class="btn btn-submit">更新</button>
+		</form>
+	</main>
+
+	<div th:replace="~{fragment :: footer}"></div>
+</body>
+
+</html>

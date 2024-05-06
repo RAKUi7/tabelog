@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>プライバシーポリシー</title>
+</head>
+
+<body>
+	<div th:replace="~{fragment :: header}"></div>
+    <section class="privacy-section" id="data-collection">
+        <h2 class="section-title">個人情報の収集について</h2>
+        <p class="section-content">当サイトでは、ユーザー登録、お問い合わせなどの際に、名前、メールアドレス、住所などの個人情報を収集することがあります。収集した個人情報は、質問に回答したり、必要な情報を提供するために利用します。</p>
+    </section>
+    <section class="privacy-section" id="use-purpose">
+        <h2 class="section-title">個人情報の利用目的</h2>
+        <ul class="privacy-list">
+            <li class="list-item">サービスの提供・運営のため</li>
+            <li class="list-item">ユーザーからの問い合わせに対する回答のため</li>
+            <li class="list-item">重要なお知らせなど、必要に応じた情報の提供のため</li>
+            <li class="list-item">法令に基づく場合など、正当な理由による要求に応じるため</li>
+        </ul>
+    </section>
+    <section class="privacy-section" id="third-party">
+        <h2 class="section-title">個人情報の第三者提供</h2>
+        <p class="section-content">当サイトでは、法律で許される場合を除き、ユーザーの同意なくして個人情報を第三者に提供することはありません。</p>
+    </section>
+    <section class="privacy-section" id="security">
+        <h2 class="section-title">個人情報の安全管理</h2>
+        <p class="section-content">収集した個人情報は、適切な安全対策を講じて管理されます。不正アクセスや個人情報の紛失、破壊、改ざん、漏えいの防止に努めます。</p>
+    </section>
+    <div th:replace="~{fragment :: footer}"></div>
+</body>
+
+</html>
